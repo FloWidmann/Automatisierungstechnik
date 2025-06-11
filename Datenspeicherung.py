@@ -1,6 +1,13 @@
 import paho.mqtt.client as mqtt
 import csv
 
+currentTimeStamp = 0
+timeInterval = 1 # in seconds
+maxTime = 15 #15 minutes
+maxTimeStamps = maxTime * 60 * timeInterval  
+
+
+
 # MQTT-Broker und Verbindungseinstellungen
 broker = "158.180.44.197"
 port = 1883
@@ -34,5 +41,8 @@ mqttc.connect(broker, port)
 mqttc.subscribe(topic, qos=0)
 
 # MQTT-Schleife starten (Daten werden kontinuierlich empfangen und gespeichert)
-while True:
-    mqttc.loop(0.5)
+while currentTimeStamp <= maxTimeStamps:
+    mqttc.loop(timeInterval)
+    currentTimeStamp = currentTimeStamp + timeInterval
+
+print("Einlesen beendet nach: " + currentTimeStamp + " Schritte")
