@@ -4,7 +4,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
 # Daten laden
-df = pd.read_csv("data_sorted.csv", header=None, names=["ID", "fill_level_blue", "fill_level_green", "fill_level_red", "final_weight"])
+df = pd.read_csv("data_sorted_fill_level_grams.csv")
+print(f"Kopfzeile {df.head} \n\n")
 
 # Relevante Spalten auswählen
 xData = df[["fill_level_blue", "fill_level_green", "fill_level_red"]]  # Eingangsgrößen
@@ -17,7 +18,7 @@ xTrainingData, xTestData, yTrainingData, yTestData = train_test_split(xData, yDa
 model = LinearRegression()
 model.fit(xTrainingData, yTrainingData)
 
-print(xTrainingData)
+#print(xTrainingData)
 # Vorhersagen machen
 yPredictedData = model.predict(xTestData)
 

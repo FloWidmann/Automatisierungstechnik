@@ -41,6 +41,6 @@ df_sorted = pd.DataFrame({
 })
 
 # CSV-Datei speichern
-df_sorted.to_csv("data_sorted.csv", index=False)
+df_sorted.to_csv("data_sorted_fill_level_grams.csv", index=False)
 
-print("CSV-Datei 'data_sorted.csv' wurde erfolgreich erstellt!")
+print("CSV-Datei 'data_sorted_fill_level_grams.csv' wurde erfolgreich erstellt!")

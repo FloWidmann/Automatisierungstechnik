@@ -12,7 +12,6 @@ filteredIsBottleCracked = df[df[0].str.contains("ground_truth", na=False)]
 dropOscillations = filteredDropOscillation[1].apply(lambda x: json.loads(x).get("drop_oscillation"))
 isBottleCracked = filteredIsBottleCracked[1].apply(lambda x: json.loads(x).get("is_cracked"))
 
-
 # Richtige Zuordnung der BottleIDs
 bottleOscillation = filteredDropOscillation[1].apply(lambda x: json.loads(x).get("bottle"))
 crackedBottles = filteredIsBottleCracked[1].apply(lambda x: json.loads(x).get("bottle"))
@@ -29,8 +28,9 @@ all_bottle_ids = sorted(set(dictCrackedBottles.keys()).union(set(dictOscillation
 df_sorted = pd.DataFrame({
     "ID ": all_bottle_ids,
     "is cracked ": [dictCrackedBottles.get(bottle_id, 0.0) for bottle_id in all_bottle_ids],
-    "oscilattion ": [dictOscillation.get(bottle_id, 0.0) for bottle_id in all_bottle_ids]
+    "oscilation ": [dictOscillation.get(bottle_id, 0.0) for bottle_id in all_bottle_ids]
 })
+
 
 # CSV-Datei speichern
 df_sorted.to_csv("data_sorted_vibration.csv", index=False)
